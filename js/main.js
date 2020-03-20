@@ -37,7 +37,8 @@ function getSeriesHtmlCode() {
   let htmlCode = '';
   htmlCode += `<li>`;
   if (serie.image === null) {
-    serie.image = '';
+    serie.image = 'https://via.placeholder.com/210x295/ffffff/666666/?
+    text=TV.';
   }
   htmlCode += `  <img src="${serie.image}" class="" alt="Serie: ${serie.name}">`;
   htmlCode += `  <h3>${serie.name}</h3>`;
