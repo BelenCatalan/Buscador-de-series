@@ -25,6 +25,7 @@ function getApiSeries(ev) {
         let seriesSearch = { id: search.show.id, name: search.show.name, image: search.show.image };
         console.log(seriesSearch);
         series.push(seriesSearch);
+        paintSeries();
       }
       console.log(series);
     });
@@ -33,20 +34,27 @@ function getApiSeries(ev) {
 btn.addEventListener('click', getApiSeries);
 console.log(series);
 
-function getSeriesHtmlCode() {
+function getSeriesHtmlCode(serie) {
   let htmlCode = '';
-  htmlCode += `<li>`;
+  htmlCode += `<li class="list__style">`;
   if (serie.image === null) {
-    serie.image = 'https://via.placeholder.com/210x295/ffffff/666666/?
-    text=TV.';
+    htmlCode += `  <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV.'" class="" alt="Serie: ${serie.name}">`;
+  } else {
+    htmlCode += `  <img src="${serie.image.medium}" class="" alt="Serie: ${serie.name}">`;
   }
-  htmlCode += `  <img src="${serie.image}" class="" alt="Serie: ${serie.name}">`;
+
   htmlCode += `  <h3>${serie.name}</h3>`;
   htmlCode += `  </li>`;
-
   return htmlCode;
 }
-// function paintSeries() {}
+function paintSeries() {
+  let seriesCode = '';
+  for (const serie of series) {
+    seriesCode += getSeriesHtmlCode(serie);
+  }
+  const seriesElements = document.querySelector('.js-series-elements');
+  seriesElements.innerHTML = seriesCode;
+}
 
 // function listenAddSeries() {}
 

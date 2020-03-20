@@ -1,0 +1,9 @@
+.list__style {
+  list-style: none;
+  display: inline-block;
+  width: 250px;
+  height: 310px;
+  margin: 10px 10px 10px 10px;
+  border: 1px solid tomato;
+  align-items: center;
+}
