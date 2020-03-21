@@ -16,3 +16,6 @@
   width: 120px;
   border: 1px solid tomato;
 }
+.favorite__style {
+  background-color: tomato;
+}

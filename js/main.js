@@ -104,6 +104,7 @@ function addFavoriteArray(ev) {
   console.log(favorites);
   setInLocalStorage();
   paintFavorites();
+  paintSeries();
 }
 
 // function deleteFavoriteArray() {}
@@ -151,7 +152,7 @@ function deleteFavorite(ev) {
   let foundSerie;
   for (const favoriteSerie of favorites) {
     if (favoriteSerie.id === clickedId) {
-      //si favorito está en el array favoritos lo quito
+      //si favorito está en el array favoritos loquito
       foundSerie = favoriteSerie;
       const removefavorite = favorites.indexOf(foundSerie);
       favorites.splice(removefavorite, 1);
