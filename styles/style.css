@@ -7,3 +7,12 @@
   border: 1px solid tomato;
   align-content: center;
 }
+.img__small {
+  width: 120px;
+}
+
+.list__style-favorites {
+  list-style: none;
+  width: 120px;
+  border: 1px solid tomato;
+}

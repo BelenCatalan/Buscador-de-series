@@ -67,7 +67,6 @@ function listenAddSeries() {
 // function addFavoriteStyle() {}
 
 function addFavoriteArray(ev) {
-  debugger;
   let clickedId = ev.target.id;
   console.log(clickedId);
   clickedId = parseInt(clickedId);
@@ -103,6 +102,7 @@ function addFavoriteArray(ev) {
   }
   console.log(favorites);
   setInLocalStorage();
+  paintFavorites();
 }
 
 // function deleteFavoriteArray() {}
@@ -112,16 +112,45 @@ const setInLocalStorage = () => {
   localStorage.setItem('favorites', stringifyFavorites);
 };
 
-// function getFavoritesHtmlCode() {}
+function getFavoritesHtmlCode(favorite) {
+  let htmlCode = '';
+  htmlCode += `<li class="list__style-favorites" id="${favorite.id}">`;
+  if (favorite.image === null) {
+    htmlCode += `  <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV.'" class="js-add-series img__small" alt="Serie: ${favorite.name}" id="${favorite.id}">`;
+  } else {
+    htmlCode += `  <img src="${favorite.image.medium}" class="js-add-series img__small" alt="Serie: ${favorite.name}" id="${favorite.id}">`;
+  }
+  htmlCode += `  <p>${favorite.name}</p>`;
+  htmlCode += `  <button class="js-remove-favorite">x</button>`;
+  htmlCode += `  </li>`;
+  return htmlCode;
+}
 
 // function paintFavorites() {}
+function paintFavorites() {
+  let favoritesCode = 'Mi lista de favoritos';
+  for (const favorite of favorites) {
+    favoritesCode += getFavoritesHtmlCode(favorite);
+  }
 
+  const favoritesElements = document.querySelector('.js-favorites-elements');
+
+  console.log(favoritesElements);
+  favoritesElements.innerHTML = favoritesCode;
+  listenAddFavorites();
+}
 // function listenAddFavorites() {}
-
-// function deleteFavorite() {
-//   addFavoriteStyle();
-//   deleteFavoriteArray();
-// }
+function listenAddFavorites() {
+  const favoritesAddBtns = document.querySelectorAll('.js-remove-favorite');
+  console.log(favoritesAddBtns);
+  for (const favoritesaddBtn of favoritesAddBtns) {
+    favoritesaddBtn.addEventListener('click', deleteFavorite);
+  }
+}
+function deleteFavorite() {
+  //   addFavoriteStyle();
+  //   deleteFavoriteArray();
+}
 
 // function resetFavorites() {}
 
