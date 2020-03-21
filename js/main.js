@@ -90,7 +90,10 @@ function addFavoriteArray(ev) {
 
 // function deleteFavoriteArray() {}
 
-// function SetInLocalStorage() {}
+const setInLocalStorage = () => {
+  const stringifyFavorites = JSON.stringify(favorites);
+  localStorage.setItem('favorites', stringifyFavorites);
+};
 
 // function getFavoritesHtmlCode() {}
 
