@@ -102,6 +102,7 @@ function addFavoriteArray(ev) {
     // añado todo el objeto al array favorites
   }
   console.log(favorites);
+  setInLocalStorage();
 }
 
 // function deleteFavoriteArray() {}
