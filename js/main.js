@@ -108,7 +108,12 @@ const setInLocalStorage = () => {
 
 // function resetFavorites() {}
 
-// function getFromLocalStorage() {}
+const getFromLocalStorage = () => {
+  const localStorageFavorites = localStorage.getItem('favorites');
+  if (localStorageFavorites !== null) {
+    favorites = JSON.parse(localStorageFavorites);
+  }
+};
 
 // getApiSeries();
 // paintFavorites();
