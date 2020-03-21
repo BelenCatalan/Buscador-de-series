@@ -68,22 +68,38 @@ function listenAddSeries() {
 
 function addFavoriteArray(ev) {
   debugger;
-  const clickedId = ev.target.id;
+  let clickedId = ev.target.id;
   console.log(clickedId);
+  clickedId = parseInt(clickedId);
   let foundSerie;
   for (const favoriteSerie of favorites) {
+    if (favoriteSerie.id === clickedId) {
+      //si favorito está en el array favoritos lo quito
+      foundSerie = favoriteSerie;
+      const removefavorite = favorites.indexOf(foundSerie);
+      favorites.splice(removefavorite, 1);
+      break;
+    } else {
+      foundSerie = undefined;
+    }
   }
   if (foundSerie === undefined) {
     // si no está en favorites
     // busco el el array series el id
-    let foundSeries = findInArray(clickedId, series);
+
+    let foundForFavorites;
+    for (const itemSeries of series) {
+      if (clickedId === itemSeries.id) {
+        foundForFavorites = itemSeries;
+        favorites.push({
+          id: foundForFavorites.id,
+          name: foundForFavorites.name,
+          image: foundForFavorites.image
+        });
+      } else {
+      }
+    }
     // añado todo el objeto al array favorites
-    favorites.push({
-      id: foundSeries.id,
-      name: foundSeries.name,
-      image: foundSeries.image
-    });
-  } else {
   }
   console.log(favorites);
 }
