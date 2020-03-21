@@ -107,7 +107,10 @@ function addFavoriteArray(ev) {
 
 // function deleteFavoriteArray() {}
 
-// function SetInLocalStorage() {}
+const setInLocalStorage = () => {
+  const stringifyFavorites = JSON.stringify(favorites);
+  localStorage.setItem('favorites', stringifyFavorites);
+};
 
 // function getFavoritesHtmlCode() {}
 
@@ -122,7 +125,12 @@ function addFavoriteArray(ev) {
 
 // function resetFavorites() {}
 
-// function getFromLocalStorage() {}
+const getFromLocalStorage = () => {
+  const localStorageFavorites = localStorage.getItem('favorites');
+  if (localStorageFavorites !== null) {
+    favorites = JSON.parse(localStorageFavorites);
+  }
+};
 
 // getApiSeries();
 // paintFavorites();
