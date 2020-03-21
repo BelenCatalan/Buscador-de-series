@@ -16,3 +16,7 @@
   width: 120px;
   border: 1px solid tomato;
 }
+.list__serie-favorite {
+  background-color: coral;
+  color: blue;
+}

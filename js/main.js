@@ -36,8 +36,20 @@ btn.addEventListener('click', getApiSeries);
 
 function getSeriesHtmlCode(serie) {
   let htmlCode = '';
-
-  htmlCode += `<li class="list__style" id="${serie.id}">`;
+  let inside;
+  for (const favorite of favorites) {
+    if (favorite.id === serie.id) {
+      inside = true;
+      break;
+    } else {
+      inside = false;
+    }
+  }
+  if (inside === true) {
+    htmlCode += `<li class="list__style list__serie-favorite" id="${serie.id}">`;
+  } else {
+    htmlCode += `<li class="list__style" id="${serie.id}">`;
+  }
   if (serie.image === null) {
     htmlCode += `  <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV.'" class="js-add-series" alt="Serie: ${serie.name}" id="${serie.id}">`;
   } else {
@@ -143,6 +155,7 @@ function listenAddFavorites() {
   for (const favoritesaddBtn of favoritesAddBtns) {
     favoritesaddBtn.addEventListener('click', deleteFavorite);
   }
+  paintSeries();
 }
 function deleteFavorite(ev) {
   let clickedId = ev.target.id;
@@ -160,6 +173,7 @@ function deleteFavorite(ev) {
   }
   setInLocalStorage();
   paintFavorites();
+  paintSeries();
 }
 // function resetFavorites() {}
 
