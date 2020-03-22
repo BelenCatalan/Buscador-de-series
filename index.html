@@ -6,12 +6,18 @@
     <title>Document</title>
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
-  <body class="page col2">
-    <h1>Buscador de series</h1>
-    <input type="text" class="js-input-name" value="" />
-    <button class="js-btn-search">Buscar</button>
-    <ul class="js-series-elements"></ul>
-    <ul class="js-favorites-elements"></ul>
+  <body class="body__container">
+    <h1 class="header__style">Buscador de series</h1>
+    <main class="main__container">
+      <section class="favorites__section">
+        <input type="text" class="js-input-name" value="" />
+        <button class="js-btn-search">Buscar</button>
+        <ul class="js-favorites-elements favorites__ul"></ul>
+      </section>
+      <section class="series__section">
+        <ul class="js-series-elements ul__series"></ul>
+      </section>
+    </main>
     <script src="./js/main.js"></script>
   </body>
 </html>

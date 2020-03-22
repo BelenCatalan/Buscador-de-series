@@ -120,13 +120,14 @@ function getFavoritesHtmlCode(favorite) {
     htmlCode += `  <img src="${favorite.image.medium}" class="js-add-series img__small" alt="Serie: ${favorite.name}" id="${favorite.id}">`;
   }
   htmlCode += `  <p>${favorite.name}</p>`;
-  htmlCode += `  <button class="js-remove-favorite" id="${favorite.id}">x</button>`;
+  htmlCode += `  <button class="js-remove-favorite favorites__button" id="${favorite.id}">x</button>`;
   htmlCode += `  </li>`;
   return htmlCode;
 }
 
 function paintFavorites() {
-  let favoritesCode = 'Mi lista de favoritos';
+  let favoritesCode = '';
+  favoritesCode += `<h3>Mi lista de favoritos<h3>`;
   for (const favorite of favorites) {
     favoritesCode += getFavoritesHtmlCode(favorite);
   }
