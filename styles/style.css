@@ -16,6 +16,7 @@
   width: 120px;
   border: 1px solid tomato;
 }
-.favorite__style {
-  background-color: tomato;
+.list__serie-favorite {
+  background-color: coral;
+  color: blue;
 }
