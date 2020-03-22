@@ -6,34 +6,27 @@ let giveUserNameSeries;
 
 const giveNamebyUser = document.querySelector('.js-input-name');
 const btn = document.querySelector('.js-btn-search');
-// console.log(giveNamebyUser);
-// console.log(btn);
 
+//START GET API SERIES
 function getApiSeries(ev) {
   let serieByUser = ev.target.parentElement.querySelector('.js-input-name').value;
-  // console.log(serieByUser);
   giveUserNameSeries = serieByUser;
 
   fetch('http://api.tvmaze.com/search/shows?q=' + giveUserNameSeries)
     .then(response => response.json())
     .then(searchs => {
-      console.log(searchs);
       for (const search of searchs) {
-        // console.log(search.show.id);
-        // console.log(search.show.name);
-        // console.log(search.show.image.medium);
         let seriesSearch = { id: search.show.id, name: search.show.name, image: search.show.image };
-        // console.log(seriesSearch);
         series.push(seriesSearch);
         paintSeries();
       }
-      // console.log(series);
     });
 }
 
 btn.addEventListener('click', getApiSeries);
-// console.log(series);
+//FINISH GET API SERIES
 
+//START PAINT AND LISTEN SERIES
 function getSeriesHtmlCode(serie) {
   let htmlCode = '';
   let inside;
@@ -68,20 +61,18 @@ function paintSeries() {
   seriesElements.innerHTML = seriesCode;
   listenAddSeries();
 }
-// listenAddSeries();
+
 function listenAddSeries() {
   const seriesAddBtns = document.querySelectorAll('.js-add-series');
-  console.log(seriesAddBtns);
   for (const seriesaddBtn of seriesAddBtns) {
     seriesaddBtn.addEventListener('click', addFavoriteArray);
   }
 }
+//FINISH PAINT AND LISTEN SERIES
 
-// function addFavoriteStyle() {}
-
+//START ADD FAVORITES
 function addFavoriteArray(ev) {
   let clickedId = ev.target.id;
-  console.log(clickedId);
   clickedId = parseInt(clickedId);
   let foundSerie;
   for (const favoriteSerie of favorites) {
@@ -113,19 +104,13 @@ function addFavoriteArray(ev) {
     }
     // añado todo el objeto al array favorites
   }
-  console.log(favorites);
   setInLocalStorage();
   paintFavorites();
   paintSeries();
 }
+//FINISH ADD FAVORITES
 
-// function deleteFavoriteArray() {}
-
-const setInLocalStorage = () => {
-  const stringifyFavorites = JSON.stringify(favorites);
-  localStorage.setItem('favorites', stringifyFavorites);
-};
-
+//START PAINT AND LISTEN FAVORITES
 function getFavoritesHtmlCode(favorite) {
   let htmlCode = '';
   htmlCode += `<li class="list__style-favorites" id="${favorite.id}">`;
@@ -140,7 +125,6 @@ function getFavoritesHtmlCode(favorite) {
   return htmlCode;
 }
 
-// function paintFavorites() {}
 function paintFavorites() {
   let favoritesCode = 'Mi lista de favoritos';
   for (const favorite of favorites) {
@@ -152,7 +136,7 @@ function paintFavorites() {
   listenAddFavorites();
   listenForReset();
 }
-// function listenAddFavorites() {}
+
 function listenAddFavorites() {
   const favoritesAddBtns = document.querySelectorAll('.js-remove-favorite');
   for (const favoritesaddBtn of favoritesAddBtns) {
@@ -160,9 +144,11 @@ function listenAddFavorites() {
   }
   paintSeries();
 }
+//FINISH PAINT AND LISTEN FAVORITES
+
+//START DELETE FAVORITES
 function deleteFavorite(ev) {
   let clickedId = ev.target.id;
-  console.log(clickedId);
   clickedId = parseInt(clickedId);
   let foundSerie;
   for (const favoriteSerie of favorites) {
@@ -178,7 +164,8 @@ function deleteFavorite(ev) {
   paintFavorites();
   paintSeries();
 }
-// function resetFavorites() {}
+//FINISH DELETE FAVORITES
+//START RESET FAVORITES
 function listenForReset() {
   const listenForReset = document.querySelector('.js-btn-reset');
   listenForReset.addEventListener('click', resetFavorites);
@@ -189,13 +176,19 @@ function resetFavorites() {
   paintFavorites();
   setInLocalStorage();
 }
+//FINISH RESET FAVORITES
 
+//START SEND AND GET LOCALSTORAGE
+const setInLocalStorage = () => {
+  const stringifyFavorites = JSON.stringify(favorites);
+  localStorage.setItem('favorites', stringifyFavorites);
+};
 const getFromLocalStorage = () => {
   const localStorageFavorites = localStorage.getItem('favorites');
   if (localStorageFavorites !== null) {
     favorites = JSON.parse(localStorageFavorites);
   }
 };
+//FINISH SEND AND GET LOCALSTORAGE
 getFromLocalStorage();
-// getApiSeries();
 paintFavorites();
