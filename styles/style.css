@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 30px 40px 30px 40px;
   padding: 0px;
+  font-family: 'Lato', sans-serif;
 }
 .header__style {
   text-align: center;
@@ -10,49 +11,103 @@
   width: 100%;
   display: flex;
 }
-
-.ul__series {
+.input_style {
+  border: none;
+  border-bottom: 2px solid #6f5f5e;
+  height: 35px;
+  padding: 0;
+}
+.search__button {
+  border-color: none;
+  border-image: none;
+  background-color: #6f5f5e;
+  color: white;
+  border-style: none;
+  width: 80px;
+  height: 37px;
+  padding: 0;
+  font-size: 16px;
+  cursor: pointer;
+}
+/* SERIES */
+.series__ul {
   margin: 0px;
 }
-.favorites__ul {
-  margin: 0px;
-  padding: 0px;
-}
-
 .series__section {
   width: 70%;
 }
 
+.series__list-style {
+  list-style: none;
+  display: inline-block;
+  width: 240px;
+  height: 100%;
+  margin: 10px 10px 10px 10px;
+  align-content: center;
+  background-color: #fec397;
+  color: #6f5f5e;
+}
+.series__p {
+  text-align: center;
+}
+.series__img {
+  display: block;
+  margin: auto;
+  margin-top: 15px;
+  cursor: pointer;
+}
+/* END SERIES */
+
+/* FAVORITES */
+.favorites__ul {
+  margin: 0px;
+  padding: 0px;
+}
 .favorites__section {
   width: 30%;
   align-content: left;
 }
-.list__style {
-  list-style: none;
-  display: inline-block;
-  width: 240px;
-  height: 310px;
-  margin: 10px 10px 10px 10px;
-  border: 1px solid tomato;
-  align-content: center;
-}
-.img__small {
+.favorites__img--small {
   width: 120px;
 }
-
-.list__style-favorites {
+.favorites__list--style {
   list-style: none;
   margin: 5px 0px 5px 0px;
-  width: 120px;
-  border: 1px solid tomato;
+  width: 100%;
   display: flex;
   align-items: center;
 }
-.list__serie-favorite {
-  background-color: coral;
-  color: blue;
+.favorite__list--serie {
+  background-color: #6f5f5e;
+  color: #fec397;
 }
 .favorites__button {
-  align-content: flex-end;
-  border-block-end: crimson;
+  position: absolute;
+  left: 380px;
+  border-radius: 50%;
+  box-shadow: none;
+  border-width: 2px;
+  border-style: none;
+  border-color: none;
+  border-image: none;
+  background-color: #6f5f5e;
+  color: white;
+  cursor: pointer;
+}
+.favorites__p {
+  width: 200px;
+  padding-left: 10px;
+}
+.favorites_reset {
+  border-color: none;
+  border-image: none;
+  background-color: #6f5f5e;
+  color: white;
+  border-style: none;
+  width: 60px;
+  height: 25px;
+  padding: 0;
+  font-size: 12px;
+  margin-top: 10px;
+  cursor: pointer;
 }

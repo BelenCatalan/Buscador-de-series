@@ -9,6 +9,7 @@ const btn = document.querySelector('.js-btn-search');
 
 //START GET API SERIES
 function getApiSeries(ev) {
+  series = [];
   let serieByUser = ev.target.parentElement.querySelector('.js-input-name').value;
   giveUserNameSeries = serieByUser;
 
@@ -39,16 +40,16 @@ function getSeriesHtmlCode(serie) {
     }
   }
   if (inside === true) {
-    htmlCode += `<li class="list__style list__serie-favorite" id="${serie.id}">`;
+    htmlCode += `<li class="series__list-style favorite__list--serie" id="${serie.id}">`;
   } else {
-    htmlCode += `<li class="list__style" id="${serie.id}">`;
+    htmlCode += `<li class="series__list-style" id="${serie.id}">`;
   }
   if (serie.image === null) {
-    htmlCode += `  <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV.'" class="js-add-series" alt="Serie: ${serie.name}" id="${serie.id}">`;
+    htmlCode += `  <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV.'" class="js-add-series series__img" alt="Serie: ${serie.name}" id="${serie.id}">`;
   } else {
-    htmlCode += `  <img src="${serie.image.medium}" class="js-add-series" alt="Serie: ${serie.name}" id="${serie.id}">`;
+    htmlCode += `  <img src="${serie.image.medium}" class="js-add-series series__img" alt="Serie: ${serie.name}" id="${serie.id}">`;
   }
-  htmlCode += `  <p>${serie.name}</p>`;
+  htmlCode += `  <p class="series__p">${serie.name}</p>`;
   htmlCode += `  </li>`;
   return htmlCode;
 }
@@ -113,13 +114,13 @@ function addFavoriteArray(ev) {
 //START PAINT AND LISTEN FAVORITES
 function getFavoritesHtmlCode(favorite) {
   let htmlCode = '';
-  htmlCode += `<li class="list__style-favorites" id="${favorite.id}">`;
+  htmlCode += `<li class="favorites__list--style" id="${favorite.id}">`;
   if (favorite.image === null) {
-    htmlCode += `  <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV.'" class="js-add-series img__small" alt="Serie: ${favorite.name}" id="${favorite.id}">`;
+    htmlCode += `  <img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV.'" class="js-add-series favorites__img--small" alt="Serie: ${favorite.name}" id="${favorite.id}">`;
   } else {
-    htmlCode += `  <img src="${favorite.image.medium}" class="js-add-series img__small" alt="Serie: ${favorite.name}" id="${favorite.id}">`;
+    htmlCode += `  <img src="${favorite.image.medium}" class="js-add-series favorites__img--small" alt="Serie: ${favorite.name}" id="${favorite.id}">`;
   }
-  htmlCode += `  <p>${favorite.name}</p>`;
+  htmlCode += `  <p class="favorites__p">${favorite.name}</p>`;
   htmlCode += `  <button class="js-remove-favorite favorites__button" id="${favorite.id}">x</button>`;
   htmlCode += `  </li>`;
   return htmlCode;
@@ -127,11 +128,11 @@ function getFavoritesHtmlCode(favorite) {
 
 function paintFavorites() {
   let favoritesCode = '';
-  favoritesCode += `<h3>Mi lista de favoritos<h3>`;
+  favoritesCode += `<h3>Mis series favoritas<h3>`;
   for (const favorite of favorites) {
     favoritesCode += getFavoritesHtmlCode(favorite);
   }
-  favoritesCode += `<button class="js-btn-reset">Reset</button>`;
+  favoritesCode += `<button class="js-btn-reset favorites_reset">Reset</button>`;
   const favoritesElements = document.querySelector('.js-favorites-elements');
   favoritesElements.innerHTML = favoritesCode;
   listenAddFavorites();
