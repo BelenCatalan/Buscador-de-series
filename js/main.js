@@ -8,9 +8,9 @@ const giveNamebyUser = document.querySelector('.js-input-name');
 const btn = document.querySelector('.js-btn-search');
 
 //START GET API SERIES
-function getApiSeries(ev) {
+function getApiSeries() {
   series = [];
-  let serieByUser = ev.target.parentElement.querySelector('.js-input-name').value;
+  let serieByUser = giveNamebyUser.value;
   giveUserNameSeries = serieByUser;
 
   fetch('http://api.tvmaze.com/search/shows?q=' + giveUserNameSeries)
@@ -30,16 +30,7 @@ btn.addEventListener('click', getApiSeries);
 //START PAINT AND LISTEN SERIES
 function getSeriesHtmlCode(serie) {
   let htmlCode = '';
-  let inside;
-  for (const favorite of favorites) {
-    if (favorite.id === serie.id) {
-      inside = true;
-      break;
-    } else {
-      inside = false;
-    }
-  }
-  if (inside === true) {
+  if (serieCompareFavo(serie) === true) {
     htmlCode += `<li class="series__list-style favorite__list--serie" id="${serie.id}">`;
   } else {
     htmlCode += `<li class="series__list-style" id="${serie.id}">`;
@@ -78,7 +69,6 @@ function addFavoriteArray(ev) {
   let foundSerie;
   for (const favoriteSerie of favorites) {
     if (favoriteSerie.id === clickedId) {
-      //si favorito está en el array favoritos lo quito
       foundSerie = favoriteSerie;
       const removefavorite = favorites.indexOf(foundSerie);
       favorites.splice(removefavorite, 1);
@@ -88,9 +78,6 @@ function addFavoriteArray(ev) {
     }
   }
   if (foundSerie === undefined) {
-    // si no está en favorites
-    // busco el el array series el id
-
     let foundForFavorites;
     for (const itemSeries of series) {
       if (clickedId === itemSeries.id) {
@@ -103,7 +90,6 @@ function addFavoriteArray(ev) {
       } else {
       }
     }
-    // añado todo el objeto al array favorites
   }
   setInLocalStorage();
   paintFavorites();
@@ -155,7 +141,6 @@ function deleteFavorite(ev) {
   let foundSerie;
   for (const favoriteSerie of favorites) {
     if (favoriteSerie.id === clickedId) {
-      //si favorito está en el array favoritos loquito
       foundSerie = favoriteSerie;
       const removefavorite = favorites.indexOf(foundSerie);
       favorites.splice(removefavorite, 1);
@@ -194,3 +179,17 @@ const getFromLocalStorage = () => {
 //FINISH SEND AND GET LOCALSTORAGE
 getFromLocalStorage();
 paintFavorites();
+
+//HELPERS
+function serieCompareFavo(serie) {
+  let inside;
+  for (const favorite of favorites) {
+    if (favorite.id === serie.id) {
+      inside = true;
+      break;
+    } else {
+      inside = false;
+    }
+  }
+  return inside;
+}
