@@ -51,6 +51,11 @@ function paintSeries() {
     seriesCode += getSeriesHtmlCode(serie);
   }
   const seriesElements = document.querySelector('.js-series-elements');
+  // if (serieCompareFavo(serie) === true) {
+  //   seriesElements.appendChild.style = 'backgroundColor: #6f5f5e; color:#fec397';
+  // } else {
+  //   htmlCode += `<li class="series__list-style" id="${serie.id}">`;
+  // }
   seriesElements.innerHTML = seriesCode;
   listenAddSeries();
 }
@@ -112,6 +117,17 @@ function getFavoritesHtmlCode(favorite) {
   htmlCode += `  </li>`;
   return htmlCode;
 }
+
+// Function for work with Advantage DOM
+//function getFavoritesHtmlCode(favorite) {
+// let newHtmlCode = document.createElement('li');
+// const atribute = document.createAttribute('class');
+// atribute.value = 'favorites__list--style';
+// const atribute2 = document.createAttribute('id');
+// atribute2.value = '${favorite.id}';
+// let newContentFavorite = document.createTextNode('<img src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV.'" class="js-add-series favorites__img--small" alt="Serie: ${favorite.name}" id="${favorite.id}">');
+// newHtmlCode.appendChild(newContentFavorite);
+// }
 
 function paintFavorites() {
   let favoritesCode = '';
