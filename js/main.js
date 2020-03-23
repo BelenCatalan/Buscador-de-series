@@ -30,16 +30,7 @@ btn.addEventListener('click', getApiSeries);
 //START PAINT AND LISTEN SERIES
 function getSeriesHtmlCode(serie) {
   let htmlCode = '';
-  let inside;
-  for (const favorite of favorites) {
-    if (favorite.id === serie.id) {
-      inside = true;
-      break;
-    } else {
-      inside = false;
-    }
-  }
-  if (inside === true) {
+  if (serieCompareFavo(serie) === true) {
     htmlCode += `<li class="series__list-style favorite__list--serie" id="${serie.id}">`;
   } else {
     htmlCode += `<li class="series__list-style" id="${serie.id}">`;
