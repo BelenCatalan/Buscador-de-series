@@ -8,9 +8,9 @@ const giveNamebyUser = document.querySelector('.js-input-name');
 const btn = document.querySelector('.js-btn-search');
 
 //START GET API SERIES
-function getApiSeries(ev) {
+function getApiSeries() {
   series = [];
-  let serieByUser = ev.target.parentElement.querySelector('.js-input-name').value;
+  let serieByUser = giveNamebyUser.value;
   giveUserNameSeries = serieByUser;
 
   fetch('http://api.tvmaze.com/search/shows?q=' + giveUserNameSeries)
