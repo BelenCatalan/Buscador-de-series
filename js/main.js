@@ -8,7 +8,8 @@ const giveNamebyUser = document.querySelector('.js-input-name');
 const btn = document.querySelector('.js-btn-search');
 
 //START GET API SERIES
-function getApiSeries() {
+function getApiSeries(eve) {
+  eve.preventDefault();
   series = [];
   let serieByUser = giveNamebyUser.value;
   giveUserNameSeries = serieByUser;
