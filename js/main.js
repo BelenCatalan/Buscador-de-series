@@ -193,3 +193,11 @@ function serieCompareFavo(serie) {
   }
   return inside;
 }
+
+function foundInArray(id, arr) {
+  for (const item of arr) {
+    if (item.id === id) {
+      return item;
+    }
+  }
+}
