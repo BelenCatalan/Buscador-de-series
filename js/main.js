@@ -78,7 +78,6 @@ function addFavoriteArray(ev) {
   let foundSerie;
   for (const favoriteSerie of favorites) {
     if (favoriteSerie.id === clickedId) {
-      //si favorito está en el array favoritos lo quito
       foundSerie = favoriteSerie;
       const removefavorite = favorites.indexOf(foundSerie);
       favorites.splice(removefavorite, 1);
@@ -88,9 +87,6 @@ function addFavoriteArray(ev) {
     }
   }
   if (foundSerie === undefined) {
-    // si no está en favorites
-    // busco el el array series el id
-
     let foundForFavorites;
     for (const itemSeries of series) {
       if (clickedId === itemSeries.id) {
@@ -103,7 +99,6 @@ function addFavoriteArray(ev) {
       } else {
       }
     }
-    // añado todo el objeto al array favorites
   }
   setInLocalStorage();
   paintFavorites();
@@ -155,7 +150,6 @@ function deleteFavorite(ev) {
   let foundSerie;
   for (const favoriteSerie of favorites) {
     if (favoriteSerie.id === clickedId) {
-      //si favorito está en el array favoritos loquito
       foundSerie = favoriteSerie;
       const removefavorite = favorites.indexOf(foundSerie);
       favorites.splice(removefavorite, 1);
