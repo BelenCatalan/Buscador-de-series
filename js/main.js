@@ -188,3 +188,17 @@ const getFromLocalStorage = () => {
 //FINISH SEND AND GET LOCALSTORAGE
 getFromLocalStorage();
 paintFavorites();
+
+//HELPERS
+function serieCompareFavo(serie) {
+  let inside;
+  for (const favorite of favorites) {
+    if (favorite.id === serie.id) {
+      inside = true;
+      break;
+    } else {
+      inside = false;
+    }
+  }
+  return inside;
+}
