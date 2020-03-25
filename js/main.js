@@ -1,5 +1,5 @@
 'use strict';
-
+let recomendLanguajes = ['English', 'Spanish', 'Portuguese'];
 let series = [];
 let favorites = [];
 let giveUserNameSeries;
@@ -18,7 +18,7 @@ function getApiSeries(eve) {
     .then(response => response.json())
     .then(searchs => {
       for (const search of searchs) {
-        let seriesSearch = { id: search.show.id, name: search.show.name, image: search.show.image };
+        let seriesSearch = { id: search.show.id, name: search.show.name, image: search.show.image, languaje: search.show.language };
         series.push(seriesSearch);
         paintSeries();
       }
@@ -42,6 +42,12 @@ function getSeriesHtmlCode(serie) {
     htmlCode += `  <img src="${serie.image.medium}" class="js-add-series series__img" alt="Serie: ${serie.name}" id="${serie.id}">`;
   }
   htmlCode += `  <p class="series__p">${serie.name}</p>`;
+  htmlCode += `  <p class="series__p">${serie.languaje}</p>`;
+  for (const recomendLanguaje of recomendLanguajes) {
+    if (serie.languaje === recomendLanguaje) {
+      htmlCode += `  <p class="series__p">Recomended</p>`;
+    } //probar con .....
+  }
   htmlCode += `  </li>`;
   return htmlCode;
 }
@@ -63,6 +69,14 @@ function listenAddSeries() {
 }
 //FINISH PAINT AND LISTEN SERIES
 
+const logCountSeries = document.querySelector('.js-btn-log');
+
+logCountSeries.addEventListener('click', countSeries);
+
+function countSeries() {
+  let count = favorites.length;
+  console.log(count);
+}
 //START ADD FAVORITES
 function addFavoriteArray(ev) {
   let clickedId = ev.target.id;
